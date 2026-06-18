@@ -1,46 +1,68 @@
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@import './theme/theme.default.css' layer(theme);
+@import './theme/theme.dark.css' layer(theme);
+@import './theme/theme.sidebar.css' layer(theme);
+@import './theme/theme.modal.css' layer(theme);
+@import './theme/theme.filter.css' layer(theme);
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source inline('{,}grid-cols-{1..12}');
+@source inline('{,}gap-{0..12}');
+@source inline('{,}line-clamp-{1..6}');
+
+@utility text-* {
+  color: --value(--color-* -text) !important;
+}
+
 @theme {
-  /* Radius */
+  /* Radius - Keep as is */
   --radius: 0.625rem;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Design System Variables */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --switch-unchecked: oklch(0.85 0.008 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0 / 0.7);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375 / 0.8);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32 / 0.2);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  /* Design System Variables - Updated with your colors */
+  --background: #faf5ff;              /* Light purple tint */
+  --foreground: #64056e;              /* Dark purple for text */
+  --card: #ffffff;                    /* White cards */
+  --card-foreground: #64056e;         /* Dark purple text on cards */
+  --popover: #ffffff;                 /* White popovers */
+  --popover-foreground: #64056e;      /* Dark purple text on popovers */
+  --primary: #a91c6a;                 /* Your deep magenta */
+  --primary-foreground: #ffffff;      /* White text on primary */
+  --secondary: #cc2962;               /* Your rich rose */
+  --secondary-foreground: #ffffff;    /* White text on secondary */
+  --muted: #f3e8ff;                   /* Light purple-muted */
+  --muted-foreground: #a91c6a;        /* Magenta for muted text */
+  --accent: #e9355a;                  /* Your vibrant pink-red */
+  --accent-foreground: #ffffff;       /* White text on accent */
+  --destructive: #e9355a;             /* Use pink-red for destructive */
+  --border: #cc2962;                  /* Rose for borders */
+  --input: #ffffff;                   /* White inputs */
+  --switch-unchecked: #cc2962;        /* Rose for unchecked switches */
+  --ring: #a91c6a;                    /* Magenta focus ring */
+  --chart-1: #a91c6a;                 /* Magenta for charts */
+  --chart-2: #e9355a;                 /* Pink-red for charts */
+  --chart-3: #cc2962;                 /* Rose for charts */
+  --chart-4: #64056e;                 /* Dark purple for charts */
+  --chart-5: #a91c6a;                 /* Magenta for charts */
+  --sidebar: #faf5ff;                 /* Light purple sidebar */
+  --sidebar-foreground: #64056e;      /* Dark purple sidebar text */
+  --sidebar-primary: #a91c6a;         /* Magenta sidebar primary */
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e9355a;          /* Pink-red sidebar accent */
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #cc2962;          /* Rose sidebar borders */
+  --sidebar-ring: #a91c6a;            /* Magenta sidebar ring */
 
-  /* Mapped Color Variables */
+  /* Mapped Color Variables - Updated with your colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -86,60 +108,115 @@
   --breakpoint-2xl: 1536px;
   --breakpoint-3xl: 1920px;
 
-  /* Colors */
-  --color-button-accent: var(--color-blue-500);
-  --color-button-accent-text: var(--color-white);
-  --color-button-dark: var(--color-gray-800);
-  --color-success: var(--color-teal-500);
-  --color-rc-success: var(--color-teal-500);
-  --color-danger: var(--color-rose-700);
-  --color-rc-danger: var(--color-rose-500);
-  --color-warning: var(--color-amber-500);
-  --color-rc-warning: var(--color-amber-500);
-  --color-description-border: var(--color-slate-400);
-  --color-input-error: var(--color-purple-600);
-  --color-dropdown-accent: var(--color-indigo-500);
-  --color-loader-default: var(--color-indigo-500);
+  /* Colors - All updated with your palette */
+  --color-button-accent: #a91c6a;           /* Magenta buttons */
+  --color-button-accent-text: #ffffff;      /* White text */
+  --color-button-dark: #64056e;             /* Dark purple buttons */
+  --color-success: #cc2962;                 /* Rose for success */
+  --color-rc-success: #cc2962;              /* Rose for success */
+  --color-danger: #e9355a;                  /* Pink-red for danger */
+  --color-rc-danger: #e9355a;               /* Pink-red for danger */
+  --color-warning: #cc2962;                 /* Rose for warnings */
+  --color-rc-warning: #cc2962;              /* Rose for warnings */
+  --color-description-border: #cc2962;      /* Rose borders */
+  --color-input-error: #a91c6a;             /* Magenta input errors */
+  --color-dropdown-accent: #a91c6a;         /* Magenta dropdown accents */
+  --color-loader-default: #a91c6a;          /* Magenta loading spinner */
 
-  --color-bg-start: var(--color-white);
-  --color-bg-end: var(--color-gray-100);
-  --color-text-primary: var(--color-gray-800);
-  --color-text-secondary: var(--color-gray-600);
-  --color-accent: var(--color-violet-600);
-  --color-bc-dropzone-primary: var(--color-gray-200);
-  --color-bc-dropzone-secondary: var(--color-gray-300);
-  --color-card-primary: var(--color-white);
-  --color-card-secondary: var(--color-gray-100);
-  --color-button-default-text: var(--color-gray-800);
-  --color-bc-button-default: var(--color-gray-200);
-  --color-button-default-hover: var(--color-gray-100);
-  --color-button-default-hover-text: var(--color-gray-900);
-  --color-button-invisible-hover: var(--color-gray-400);
-  --color-button-invisible-text: var(--color-gray-800);
-  --color-toggle-default: var(--color-gray-200);
-  --color-toggle-default-checked: var(--color-gray-800);
-  --color-toggle-default-text: var(--color-gray-600);
-  --color-toggle-default-checked-text: var(--color-gray-200);
-  --color-toggle-default-hover-text: var(--color-gray-800);
-  --color-toggle-default-hover-checked-text: var(--color-gray-100);
-  --color-bc-toggle-default: var(--color-gray-300);
-  --color-bc-toggle-default-checked: var(--color-gray-300);
-  --color-toggle-primary: var(--color-gray-100);
-  --color-toggle-primary-checked: var(--color-indigo-600);
-  --color-toggle-primary-text: var(--color-gray-600);
-  --color-toggle-primary-checked-text: var(--color-gray-100);
-  --color-toggle-primary-hover-text: var(--color-gray-800);
-  --color-toggle-primary-hover-checked-text: var(--color-white);
-  --color-bc-toggle-primary: var(--color-gray-200);
-  --color-bc-toggle-primary-checked: var(--color-gray-200);
-  --color-toggle: var(--color-gray-300);
-  --color-toggle-checked: var(--color-gray-300);
-  --color-input-label: var(--color-gray-800);
-  --color-input-text: var(--color-gray-700);
-  --color-input: var(--color-white);
-  --color-bc-input: var(--color-gray-300);
-  --color-bc-input-focus: var(--color-blue-400);
-  --color-rc-input-focus: var(--color-blue-400);
-  --color-bc-header: var(--color-gray-100);
-  --color-bc-delimiter: var(--color-gray-300);
+  --color-bg-start: #faf5ff;                /* Very light purple */
+  --color-bg-end: #f3e8ff;                  /* Slightly deeper purple */
+  --color-text-primary: #64056e;            /* Dark purple text */
+  --color-text-secondary: #a91c6a;          /* Magenta secondary text */
+  --color-accent: #e9355a;                  /* Pink-red accents */
+  --color-bc-dropzone-primary: #f3e8ff;     /* Light purple dropzone */
+  --color-bc-dropzone-secondary: #cc2962;   /* Rose dropzone border */
+  --color-card-primary: #ffffff;            /* White cards */
+  --color-card-secondary: #faf5ff;          /* Light purple cards */
+  --color-button-default-text: #64056e;     /* Dark purple button text */
+  --color-bc-button-default: #f3e8ff;       /* Light purple button bg */
+  --color-button-default-hover: #e9355a;    /* Pink-red hover */
+  --color-button-default-hover-text: #ffffff;
+  --color-button-invisible-hover: #cc2962;  /* Rose invisible button hover */
+  --color-button-invisible-text: #64056e;   /* Dark purple text */
+  --color-toggle-default: #f3e8ff;          /* Light purple toggle */
+  --color-toggle-default-checked: #a91c6a;  /* Magenta checked toggle */
+  --color-toggle-default-text: #64056e;     /* Dark purple text */
+  --color-toggle-default-checked-text: #ffffff;
+  --color-toggle-default-hover-text: #a91c6a;
+  --color-toggle-default-hover-checked-text: #ffffff;
+  --color-bc-toggle-default: #cc2962;       /* Rose toggle bg */
+  --color-bc-toggle-default-checked: #a91c6a; /* Magenta checked bg */
+  --color-toggle-primary: #f3e8ff;          /* Light purple toggle */
+  --color-toggle-primary-checked: #a91c6a;  /* Magenta checked */
+  --color-toggle-primary-text: #64056e;     /* Dark purple text */
+  --color-toggle-primary-checked-text: #ffffff;
+  --color-toggle-primary-hover-text: #a91c6a;
+  --color-toggle-primary-hover-checked-text: #ffffff;
+  --color-bc-toggle-primary: #cc2962;       /* Rose toggle bg */
+  --color-bc-toggle-primary-checked: #a91c6a; /* Magenta checked */
+  --color-toggle: #cc2962;                  /* Rose toggle */
+  --color-toggle-checked: #a91c6a;          /* Magenta checked */
+  --color-input-label: #64056e;             /* Dark purple labels */
+  --color-input-text: #64056e;              /* Dark purple input text */
+  --color-input: #ffffff;                   /* White inputs */
+  --color-bc-input: #cc2962;                /* Rose input borders */
+  --color-bc-input-focus: #a91c6a;          /* Magenta focus */
+  --color-rc-input-focus: #a91c6a;          /* Magenta focus ring */
+  --color-bc-header: #faf5ff;               /* Light purple header */
+  --color-bc-delimiter: #cc2962;            /* Rose delimiters */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  *:focus-visible {
+    outline: none;
+  }
+
+  html,
+  body {
+    @apply h-full min-h-full;
+  }
+
+  body {
+    --sat: env(safe-area-inset-top);
+    --sar: env(safe-area-inset-right);
+    --sab: env(safe-area-inset-bottom);
+    --sal: env(safe-area-inset-left);
+
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+    scroll-behavior: smooth;
+    word-break: break-word;
+    overflow-anchor: none;
+
+    @apply from-bg-start to-bg-end overflow-hidden bg-linear-to-b text-[var(--color-text-primary)] antialiased;
+  }
+}
+
+@layer theme {
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite linear;
+  }
 }
