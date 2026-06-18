@@ -63,12 +63,12 @@
         <div
           class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/10 group-hover:border-primary/20 group-hover:scale-105 transition-all duration-200"
         >
-          <img class="h-5 w-5" src="/favicon.png" alt="Slink" />
+          <img class="h-5 w-5" src="/favicon.png" alt="Gooner Nest" />
         </div>
         <span
           class="font-semibold text-foreground tracking-tight text-lg hidden sm:inline-block"
         >
-          Slink</span
+          Gooner Nest</span
         >
       </a>
     {/if}
